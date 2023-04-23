@@ -9,7 +9,7 @@ import (
 	appsv1 "k8s.io/api/apps/v1"
 	batchv1 "k8s.io/api/batch/v1"
 	corev1 "k8s.io/api/core/v1"
-	policyv1beta1 "k8s.io/api/policy/v1beta1"
+	policyv1 "k8s.io/api/policy/v1"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/runtime"
 )
@@ -218,7 +218,7 @@ func podStatus(u *unstructured.Unstructured) (string, error) {
 
 // PodDisruptionBudget
 func pdbStatus(u *unstructured.Unstructured) (string, error) {
-	pdb := &policyv1beta1.PodDisruptionBudget{}
+	pdb := &policyv1.PodDisruptionBudget{}
 	if err := runtime.DefaultUnstructuredConverter.FromUnstructured(u.Object, pdb); err != nil {
 		return StatusUnknown, err
 	}
